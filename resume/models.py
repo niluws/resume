@@ -9,6 +9,12 @@ class Team(models.Model):
     telegram = models.CharField(max_length=100)
     whatsapp = models.CharField(max_length=100)
     instagram = models.CharField(max_length=100)
+    phone = models.CharField(max_length=11, unique=True, null=True, blank=True,
+                             validators=[RegexValidator(regex='^09\d{9}$',
+                                                        message='Phone number must be entered in the format: "09xxxxxxxxx".')])
+
+    email = models.EmailField()
+    city = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -51,19 +57,7 @@ class Blog(models.Model):
         return self.title
 
 
-class Contact(models.Model):
-    phone = models.CharField(max_length=11, unique=True, null=True, blank=True,
-                             validators=[RegexValidator(regex='^09\d{9}$',
-                                                        message='Phone number must be entered in the format: "09xxxxxxxxx".')])
-
-    email = models.EmailField()
-    city = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.phone
-
-
-class Form(models.Model):
+class Message(models.Model):
     full_name = models.CharField(max_length=100)
     message = models.TextField()
     subject = models.CharField(max_length=100)

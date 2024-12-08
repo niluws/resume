@@ -11,6 +11,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'drf_spectacular',
     'corsheaders',
+    'graphene_django',
     'rest_framework',
     'resume'
 ]
@@ -27,7 +28,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
+GRAPHENE = {
+    'SCHEMA': 'resume.schema.schema'
+}
 ROOT_URLCONF = "core.urls"
 
 WSGI_APPLICATION = "core.wsgi.application"
